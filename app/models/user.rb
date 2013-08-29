@@ -18,6 +18,13 @@ class User < ActiveRecord::Base
   validates :username, :password_digest, :presence => true
   validates :password, :length => { :minimum => 3 }
 
+  has_many :gists, :class_name => "Gist", :primary_key => :id,
+  :foreign_key => :user_id
+
+  def as_json(args)
+    super(args.merge(:only => [:username]))
+  end
+
   def password
     @password || self.password_digest
   end

@@ -1,0 +1,32 @@
+// Place all the styles related to the Root controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.hidden {
+	display: none;
+}
+
+.favorite {
+	color: #DDDD00;
+	background-color:black;
+}
+
+#content {
+	float: left;
+	display: inline-block;
+	padding: 3%;
+}
+
+#detail {
+	float: left;
+	display: inline-block;
+	padding: 3%;
+}
+
+.clearfix {
+	clear: both;
+}
+
+html, body {
+	height:100%;
+	margin:0px;
+}

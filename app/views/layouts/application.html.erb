@@ -15,7 +15,7 @@
   <%= yield %>
 
 
-  <div>
+  <div class="clearfix">
     <%= button_to "Logout", session_path, :method => "delete" %>
     Current User: <%= current_user %>
     Session Token: <%= session[:session_token] %>
