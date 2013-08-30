@@ -1,17 +1,15 @@
 GistApp.Models.Gist = Backbone.Model.extend({
-
+	url: "/gists/",
 	parse: function (response) {
-		if (response.favorites[0]){
 			response.favorites = new GistApp.Models.Favorite(response.favorites[0]);
-		} else {
-			response.favorites = undefined;
-		}
+
 		return response;
 	},
 
-	toJSON: function (obj) {
-		obj.favorites = undefined;
-		return obj;
+	toJSON: function () {
+		// obj.set({favorites: undefined});
+		this.set({favorites: undefined});
+		return _.clone(this.attributes);
 	}
 
 

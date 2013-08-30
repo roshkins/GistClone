@@ -8,7 +8,10 @@ window.GistApp = {
 		var myGists = new GistApp.Collections.Gists();
 		myGists.fetch({
 			success: function () {
-				new GistApp.Routers.Gists(myGists);
+				$rootEl = $("#detail");
+				var gistsIndexView = new GistApp.Views.GistsIndex({collection: myGists});
+				$('#content').html(gistsIndexView.render().$el);
+				new GistApp.Routers.Gists(myGists, $rootEl);
 				Backbone.history.start();
 			}
 	})

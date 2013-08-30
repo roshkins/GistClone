@@ -1,23 +1,27 @@
 GistApp.Routers.Gists = Backbone.Router.extend({
 	routes: {
-		"": "gistsIndex",
-		"gists/:id/show": "gistsShow"
+		"gists/:id/show": "gistsShow",
+		"gists/new": "gistsNew"
 	},
 
-	initialize: function (gists) {
+	initialize: function (gists, $rootEl) {
 		this.gists = gists;
-	},
-
-	gistsIndex: function () {
-		var gistsIndexView = new GistApp.Views.GistsIndex({collection: this.gists});
-		$("#content").html(gistsIndexView.render().$el);
+		this.$rootEl = $rootEl;
 	},
 
 	gistsShow: function (gist_id) {
-		this.gistsIndex();
+		// this.gistsIndex();
 		var model = this.gists.get(gist_id);
+
 		var gistDetailView = new GistApp.Views.GistDetail({model: model});
-		$("#detail").html(gistDetailView.render().$el);
+		$rootEl.html(gistDetailView.render().$el);
+	},
+
+	gistsNew: function () {
+		// this.gistsIndex();
+		var gistNewView = new GistApp.Views.GistsForm({collection: this.gists});
+		$rootEl.html(gistNewView.render().$el);
 	}
+
 
 });

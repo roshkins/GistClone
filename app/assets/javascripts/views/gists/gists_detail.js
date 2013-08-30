@@ -8,8 +8,7 @@ GistApp.Views.GistDetail = Backbone.View.extend({
 
 	render: function () {
 		var favorited =
-			!!this.model.get("favorites");
-			debugger
+			!!this.model.get("favorites").id;
 		var content = this.template({gist: this.model,
 			 favorited: favorited});
 		this.$el.html(content);
@@ -19,13 +18,14 @@ GistApp.Views.GistDetail = Backbone.View.extend({
 	favorite: function (event) {
 		console.log("attempting favorite...");
 		var gist_id = parseInt(event.currentTarget.id.match(/favorite_(\d+)/)[1]);
+		console.log("gist id:" + gist_id);
 		this.model.set({favorites: new GistApp.Models.Favorite()});
 		this.model.get("favorites").save({
 			gist_id: gist_id,
 			user_id: GistApp.CurrentUser.id
 		}, {success: function () {
 			console.log("favorited!");
-			$(".unfavorite").toggleClass("favorite").toggleClass("unfavorite");
+			$(event.currentTarget).toggleClass("favorite").toggleClass("unfavorite");
 		},
 		error: function () {
 			console.log("error favoriting!");
@@ -34,10 +34,14 @@ GistApp.Views.GistDetail = Backbone.View.extend({
 	},
 
 	unfavorite: function (event) {
-			this.model.get("favorites").destroy({success: function () {
-				$(".favorite").toggleClass("favorite").toggleClass("unfavorite");
+		var that = this;
+		console.log(event.currentTarget.id);
+		var myFav = this.model.get("favorites");
+			myFav.destroy({success: function () {
+				$(event.currentTarget).toggleClass("favorite").toggleClass("unfavorite");
 				console.log("unfavorited!");
-			}}, {wait: true});
+				that.model.set({favorites: new GistApp.Models.Favorite()})
+			}});
 	}
 
 

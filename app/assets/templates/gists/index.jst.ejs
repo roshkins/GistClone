@@ -1,6 +1,7 @@
-<h1><%= GistApp.CurrentUser.username + "'s" || "Your" %> Gists</h1>
+<h1><%= GistApp.CurrentUser.username + "'s" %> Gists</h1>
 <ol>
 <% gists.each(function(gist) {%>
 	<li><a href="#/gists/<%= gist.id %>/show"><%= gist.escape("title") %></li>
 <% }) %>
 </ol>
+<a href="#/gists/new">Create Gist!</a>

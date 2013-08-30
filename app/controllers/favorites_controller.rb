@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     fav = Favorite.find_by_gist_id(params[:gist_id])
-    if fav.destroy
+    if fav && fav.destroy
       render :json => fav
     else
       render :json => fav, :status => :unprocessable_entity
