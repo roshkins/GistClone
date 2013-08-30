@@ -1,7 +1,11 @@
 GistApp.Models.Gist = Backbone.Model.extend({
 
 	parse: function (response) {
-		response.favorites = new GistApp.Models.Favorite(response.favorites[0]);
+		if (response.favorites[0]){
+			response.favorites = new GistApp.Models.Favorite(response.favorites[0]);
+		} else {
+			response.favorites = undefined;
+		}
 		return response;
 	},
 

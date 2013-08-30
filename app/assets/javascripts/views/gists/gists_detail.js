@@ -25,7 +25,7 @@ GistApp.Views.GistDetail = Backbone.View.extend({
 			user_id: GistApp.CurrentUser.id
 		}, {success: function () {
 			console.log("favorited!");
-			$(".favorite").toggleClass("favorite").toggleClass("unfavorite");
+			$(".unfavorite").toggleClass("favorite").toggleClass("unfavorite");
 		},
 		error: function () {
 			console.log("error favoriting!");
@@ -35,7 +35,7 @@ GistApp.Views.GistDetail = Backbone.View.extend({
 
 	unfavorite: function (event) {
 			this.model.get("favorites").destroy({success: function () {
-				$(".unfavorite").toggleClass("favorite").toggleClass("unfavorite");
+				$(".favorite").toggleClass("favorite").toggleClass("unfavorite");
 				console.log("unfavorited!");
 			}}, {wait: true});
 	}
