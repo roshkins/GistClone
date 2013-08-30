@@ -21,8 +21,12 @@ class User < ActiveRecord::Base
   has_many :gists, :class_name => "Gist", :primary_key => :id,
   :foreign_key => :user_id
 
+  has_many :favorites
+
+  has_many :favorite_gists, :through => :favorites, :source => :gist
+
   def as_json(args)
-    super(args.merge(:only => [:username]))
+    super(args.merge(:only => [:username, :id]))
   end
 
   def password

@@ -7,13 +7,20 @@
 
 .favorite {
 	color: #DDDD00;
-	background-color:black;
+	background-color: black;
+}
+
+.unfavorite {
+	color: #000000;
+	background-color: white;
 }
 
 #content {
 	float: left;
 	display: inline-block;
 	padding: 3%;
+	height: 80%;
+	border-right: 1px solid black;
 }
 
 #detail {

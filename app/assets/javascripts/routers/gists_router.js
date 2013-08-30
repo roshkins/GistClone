@@ -10,14 +10,14 @@ GistApp.Routers.Gists = Backbone.Router.extend({
 
 	gistsIndex: function () {
 		var gistsIndexView = new GistApp.Views.GistsIndex({collection: this.gists});
-		$("#content").html(gistsIndexView.render().$el.html());
+		$("#content").html(gistsIndexView.render().$el);
 	},
 
 	gistsShow: function (gist_id) {
 		this.gistsIndex();
 		var model = this.gists.get(gist_id);
 		var gistDetailView = new GistApp.Views.GistDetail({model: model});
-		$("#detail").html(gistDetailView.render().$el.html());
+		$("#detail").html(gistDetailView.render().$el);
 	}
 
 });
