@@ -12,7 +12,7 @@ GistApp.Views.GistsForm = Backbone.View.extend({
 	gistSubmit: function (event) {
 		event.preventDefault();
 		var formDetails = $(event.currentTarget).serializeJSON();
-		var newGist = new GistApp.Models.Gist(formDetails.gist);
+		var newGist = new GistApp.Models.Gist(formDetails);
 		this.collection.create(newGist, {success: function () {
 				console.log("saved gist.");
 				Backbone.history.navigate("/");

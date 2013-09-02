@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830200037) do
+ActiveRecord::Schema.define(:version => 20130830220938) do
 
   create_table "favorites", :force => true do |t|
     t.integer  "user_id"
@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(:version => 20130830200037) do
     t.text     "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "gist_id"
   end
+
+  add_index "gist_files", ["gist_id"], :name => "index_gist_files_on_gist_id"
 
   create_table "gists", :force => true do |t|
     t.string   "title"
